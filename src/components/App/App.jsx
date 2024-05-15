@@ -1,7 +1,10 @@
 import { useEffect, useState } from 'react';
-import HomePage from '../../pages/HomePage/HomePage';
+import HomePage from '../../pages/HomePage/HomePage.jsx';
+import NotFoundPage from '../../pages/NotFoundPage/NotFoundPage.jsx';
+import Navigation from '../Navigation/Navigation.jsx';
 import './App.css';
 import axios from 'axios';
+import { Routes, Route } from 'react-router-dom';
 
 const trendMouvies = 'https://api.themoviedb.org/3/trending/movie/day';
 const apiKey = {
@@ -13,6 +16,7 @@ const apiKey = {
 
 export default function App() {
   const [results, setResults] = useState();
+  const [values, setValues] = useState();
 
   useEffect(() => {
     axios
@@ -24,9 +28,20 @@ export default function App() {
       .catch(err => console.error(err));
   }, []);
 
+  const searchQuery = () => {
+    setValues(values.searchFilm);
+  };
+
   return (
     <>
-      <HomePage results={results} />
+      <Navigation />
+      <Routes>
+        <Route path="/" element={<HomePage results={results} />} />
+        <Route path="/movies" element={<HomePage searchQuery={searchQuery} />}>
+          {' '}
+        </Route>
+        <Route path="*" element={<NotFoundPage />} />
+      </Routes>
     </>
   );
 }
