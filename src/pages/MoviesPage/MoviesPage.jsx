@@ -1,11 +1,7 @@
 import { Formik, Form, Field } from 'formik';
 import { PiMagnifyingGlassLight } from 'react-icons/pi';
 import MovieList from '../../components/MovieList/MovieList';
-import css from './MoviesPage.module.css'
-export default function MoviesPage({ searchMovieByQvery, values }) {
-  const handleSubmit = values => {
-    searchMovieByQvery(values.searchFilm);
-  };
+export default function MoviesPage({ handleSubmit, movies }) {
   return (
     <>
       <Formik initialValues={{ searchFilm: '' }} onSubmit={handleSubmit}>
@@ -24,9 +20,7 @@ export default function MoviesPage({ searchMovieByQvery, values }) {
           </div>
         </Form>
       </Formik>
-      <ul className={css.listOfmovies}>
-        <MovieList arrayOfFilms={values} />
-      </ul>
+      {movies && movies.length > 0 && <MovieList arrayOfFilms={movies} />}
     </>
   );
 }
