@@ -5,8 +5,11 @@ import Navigation from '../Navigation/Navigation.jsx';
 import './App.css';
 import axios from 'axios';
 import { Routes, Route } from 'react-router-dom';
+import MoviesPage from '../../pages/MoviesPage/MoviesPage.jsx';
 
 const trendMouvies = 'https://api.themoviedb.org/3/trending/movie/day';
+const searchFilmUrl = 'https://api.themoviedb.org/3/search/movie?include_adult=false&language=en-US&page=1'
+
 const apiKey = {
   headers: {
     Authorization:
@@ -23,25 +26,39 @@ export default function App() {
       .get(trendMouvies, apiKey)
       .then(response => {
         setResults(response.data.results);
-        console.log(response.data.results);
       })
       .catch(err => console.error(err));
+    
+    
   }, []);
 
-  const searchQuery = () => {
-    setValues(values.searchFilm);
-  };
+  const searchMovieByQvery = (values) => {
+    axios
+      .get(`${searchFilmUrl}?query=${values}`, apiKey)
+      .then(response => {
+        setValues(response.data.results);
+      })
+      .catch(err => console.error(err));
+  }
+
+
 
   return (
     <>
       <Navigation />
       <Routes>
         <Route path="/" element={<HomePage results={results} />} />
-        <Route path="/movies" element={<HomePage searchQuery={searchQuery} />}>
-          {' '}
-        </Route>
+        <Route
+          path="/movies"
+          element={<MoviesPage searchMovieByQvery={searchMovieByQvery} values={values} />}
+        />
+        
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </>
   );
 }
+
+/*<Route path="/movies/:movieId" element={<MovieDetailsPage />} />
+        <Route path="/movies/:movieId/cast" element={<MovieCast />} />
+        <Route path="/movies/:movieId/reviews" element={<MovieReviews />} />*/

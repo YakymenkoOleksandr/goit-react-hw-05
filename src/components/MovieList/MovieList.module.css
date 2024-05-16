@@ -1,0 +1,23 @@
+.fieldOfHeader {
+    padding: 10px;
+}
+
+.fieldOfHeaderLink {
+    display: flex;
+    flex-direction: row;
+    list-style: none;
+}
+
+.link {
+    margin-right: 20px;
+    font-size: 20px;
+}
+
+.link:hover {
+    color: gray;
+    cursor: pointer;
+}
+
+.listOfmovies {
+    padding: 10px;
+}
