@@ -1,0 +1,33 @@
+.areaForGoBackButton {
+    padding: 5px;
+}
+
+.detailsPage {
+    display: flex;
+    flex-direction: row;
+    padding: 5px;
+}
+
+.poster {
+    width: 20%;
+    height: 25%;
+    margin-right: 25px;
+}
+
+.diferentInfo {
+    list-style: none;
+}
+
+.diferentInfoGanres {
+    list-style: none;
+    display: flex;
+    flex-direction: row;
+}
+
+.genre {
+    margin-right: 10px;
+}
+
+.info {
+    margin-bottom: 10px;
+}

@@ -7,7 +7,8 @@ import axios from 'axios';
 import { Routes, Route } from 'react-router-dom';
 import MoviesPage from '../../pages/MoviesPage/MoviesPage.jsx';
 import MovieDetailsPage from '../../pages/MovieDetailsPage/MovieDetailsPage.jsx';
-
+import MovieCast from '../MovieCast/MovieCast.jsx';
+import MovieReviews from '../MovieReviews/MovieReviews.jsx';
 const trendMouvies = 'https://api.themoviedb.org/3/trending/movie/day';
 
 const apiKey = {
@@ -70,13 +71,11 @@ export default function App() {
             />
           }
         />
-        <Route path="/movies/:movieId" element={<MovieDetailsPage />} />  
+        <Route path="/movies/:movieId" element={<MovieDetailsPage />} />
+        <Route path="/movies/:movieId/cast" element={<MovieCast />} />
+        <Route path="/movies/:movieId/reviews" element={<MovieReviews />} />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </>
   );
 }
-
-/*<Route path="/movies/:movieId" element={<MovieDetailsPage />} />
-        <Route path="/movies/:movieId/cast" element={<MovieCast />} />
-        <Route path="/movies/:movieId/reviews" element={<MovieReviews />} />*/

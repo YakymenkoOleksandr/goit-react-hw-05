@@ -9,7 +9,7 @@ export default function MovieList({ arrayOfFilms }) {
           arrayOfFilms.length > 0 &&
           arrayOfFilms.map(arrayOfFilm => (
             <li key={arrayOfFilm.id}>
-              <NavLink  to={`/movies/${arrayOfFilm.id}`}>{arrayOfFilm.title}</NavLink>
+              <NavLink to={`/movies/${arrayOfFilm.id}`}>{arrayOfFilm.title}</NavLink>
             </li>
           ))}
       </ul>
