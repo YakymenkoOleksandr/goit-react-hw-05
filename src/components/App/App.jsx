@@ -1,6 +1,6 @@
 import { useEffect, useState, lazy, Suspense } from 'react';
 /*import HomePage from '../../pages/HomePage/HomePage.jsx';*/
-import NotFoundPage from '../../pages/NotFoundPage/NotFoundPage.jsx';
+/*import NotFoundPage from '../../pages/NotFoundPage/NotFoundPage.jsx';*/
 import Navigation from '../Navigation/Navigation.jsx';
 import './App.css';
 import axios from 'axios';
@@ -19,13 +19,14 @@ const apiKey = {
   },
 };
 
-const HomePage = lazy(() => import('../../pages/HomePage/HomePage.jsx'));
-const MoviesPage = lazy(() => import('../../pages/MoviesPage/MoviesPage.jsx'));
+const HomePage = lazy(() => import('../../pages/HomePage/HomePage'));
+const MoviesPage = lazy(() => import('../../pages/MoviesPage/MoviesPage'));
 const MovieDetailsPage = lazy(() =>
-  import('../../pages/MovieDetailsPage/MovieDetailsPage.jsx')
+  import('../../pages/MovieDetailsPage/MovieDetailsPage')
 );
-const MovieCast = lazy(() => import('../MovieCast/MovieCast.jsx'));
-const MovieReviews = lazy(() => import('../MovieReviews/MovieReviews.jsx'));
+const MovieCast = lazy(() => import('../MovieCast/MovieCast'));
+const MovieReviews = lazy(() => import('../MovieReviews/MovieReviews'));
+const NotFoundPage = lazy(() => import('../../pages/NotFoundPage/NotFoundPage.jsx'));
 
 export default function App() {
   const [results, setResults] = useState();
@@ -68,13 +69,13 @@ export default function App() {
   return (
     <>
       <Navigation />
-      <Routes>
-        <Suspense fallback={<div>Loading...</div>}>
+      <Suspense fallback={<div>Loading...</div>}>
+        <Routes>
           <Route path="/" element={<HomePage results={results} />} />
           <Route
             path="/movies"
             element={
-              <MoviesPage
+               <MoviesPage
                 values={values}
                 movies={movies}
                 handleSubmit={handleSubmit}
@@ -82,12 +83,12 @@ export default function App() {
             }
           />
           <Route path="/movies/:movieId" element={<MovieDetailsPage />}>
-  <Route path="cast" element={<MovieCast />} />
-  <Route path="reviews" element={<MovieReviews />} />
-</Route>
+            <Route path="cast" element={<MovieCast />} />
+            <Route path="reviews" element={<MovieReviews />} />
+          </Route>
           <Route path="*" element={<NotFoundPage />} />
-        </Suspense>
-      </Routes>
+        </Routes>
+      </Suspense>
     </>
   );
 }

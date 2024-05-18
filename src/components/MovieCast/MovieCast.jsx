@@ -14,7 +14,7 @@ export default function MovieCast() {
           'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI4YWE5MTAyOGM3M2YxNDUxMWU1ZDdhYzkwNjFkYmJkMyIsInN1YiI6IjY2NDMyYzg1YWI2MzYwNWZiNDc3ZTY2NyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.SFZIMdsLZSk8_fX_WuxlBKW65SVPPlnML-Y6QYZ0ApA',
       },
     };
-    if (movieId && movieId !== undefined) {
+    if (movieId) {
       fetch(
         `https://api.themoviedb.org/3/movie/${movieId}/credits?language=en-US`,
         options

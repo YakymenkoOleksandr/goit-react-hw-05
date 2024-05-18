@@ -4,12 +4,10 @@ import { NavLink, Outlet, useParams, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 
 export default function MovieDetailsPage() {
-
   const { movieId } = useParams();
   const [movie, setMovie] = useState(null);
-  
-  const navigate = useNavigate();
 
+  const navigate = useNavigate();
 
   useEffect(() => {
     const options = {
@@ -74,7 +72,7 @@ export default function MovieDetailsPage() {
         <h3>Aditional Information</h3>
         <ul>
           <li>
-            <NavLink  to={`/movies/${movieId}/cast`}>Cast</NavLink>
+            <NavLink to={`/movies/${movieId}/cast`}>Cast</NavLink>
           </li>
           <li>
             <NavLink to={`/movies/${movieId}/reviews`}>Reviews</NavLink>
