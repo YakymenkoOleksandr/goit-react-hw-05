@@ -1,15 +1,15 @@
-import { NavLink } from 'react-router-dom';
 import css from './MovieDetailsPage.module.css';
 import { GoArrowLeft } from 'react-icons/go';
-import { useParams, useNavigate } from 'react-router-dom';
+import { NavLink, Outlet, useParams, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 
 export default function MovieDetailsPage() {
 
   const { movieId } = useParams();
   const [movie, setMovie] = useState(null);
+  
   const navigate = useNavigate();
-  const [showMovieCast, setShowMovieCast] = useState(false);
+
 
   useEffect(() => {
     const options = {
@@ -30,10 +30,7 @@ export default function MovieDetailsPage() {
         .catch(err => console.error(err));
     }
   }, [movieId]);
-  const toggleMovieCast = () => {
-    setShowMovieCast(!showMovieCast);
-    navigate(`/movies/${movieId}/cast`); // Змінюємо шлях браузера
-  };
+
   return (
     <>
       <div className={css.areaForGoBackButton}>
@@ -77,13 +74,14 @@ export default function MovieDetailsPage() {
         <h3>Aditional Information</h3>
         <ul>
           <li>
-            <NavLink to="#" onClick={toggleMovieCast}>Cast</NavLink>
+            <NavLink  to={`/movies/${movieId}/cast`}>Cast</NavLink>
           </li>
           <li>
             <NavLink to={`/movies/${movieId}/reviews`}>Reviews</NavLink>
           </li>
         </ul>
       </div>
+      <Outlet />
     </>
   );
 }
