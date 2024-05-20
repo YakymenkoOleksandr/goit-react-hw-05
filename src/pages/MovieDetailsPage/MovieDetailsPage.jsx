@@ -1,13 +1,15 @@
 import css from './MovieDetailsPage.module.css';
 import { GoArrowLeft } from 'react-icons/go';
-import { NavLink, Outlet, useParams, useNavigate } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import { NavLink, Outlet, useParams, useNavigate, useLocation } from 'react-router-dom';
+import { useEffect, useState, useRef } from 'react';
 
 export default function MovieDetailsPage() {
   const { movieId } = useParams();
   const [movie, setMovie] = useState(null);
-
   const navigate = useNavigate();
+  const location = useLocation();
+  const locationWithUL = location.state?.from || "/movies";
+  const fromLocation = useRef(location.state?.from ?? "/movies");
 
   useEffect(() => {
     const options = {
@@ -32,7 +34,7 @@ export default function MovieDetailsPage() {
   return (
     <>
       <div className={css.areaForGoBackButton}>
-        <button onClick={() => navigate(-1)}>
+        <button onClick={() => navigate(locationWithUL)}>
           <GoArrowLeft /> Go back
         </button>
       </div>
@@ -72,10 +74,10 @@ export default function MovieDetailsPage() {
         <h3>Aditional Information</h3>
         <ul>
           <li>
-            <NavLink to={`/movies/${movieId}/cast`}>Cast</NavLink>
+            <NavLink to={`/movies/${movieId}/cast`} state={{ from: fromLocation.current }}>Cast</NavLink>
           </li>
           <li>
-            <NavLink to={`/movies/${movieId}/reviews`}>Reviews</NavLink>
+            <NavLink to={`/movies/${movieId}/reviews`} state={{ from: fromLocation.current }}>Reviews</NavLink>
           </li>
         </ul>
       </div>

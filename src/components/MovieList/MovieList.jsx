@@ -1,6 +1,8 @@
-import { NavLink } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import css from './MovieList.module.css';
 export default function MovieList({ arrayOfFilms }) {
+  const location = useLocation();
+
   return (
     <>
       <ul className={css.listOfmovies}>
@@ -9,10 +11,12 @@ export default function MovieList({ arrayOfFilms }) {
           arrayOfFilms.length > 0 &&
           arrayOfFilms.map(arrayOfFilm => (
             <li key={arrayOfFilm.id}>
-              <NavLink to={`/movies/${arrayOfFilm.id}`}>{arrayOfFilm.title}</NavLink>
+              <Link to={`/movies/${arrayOfFilm.id}`} state={{ from: location }}>{arrayOfFilm.title}</Link>
             </li>
           ))}
       </ul>
     </>
   );
 }
+
+/*`/movies/${arrayOfFilm.id}` */
