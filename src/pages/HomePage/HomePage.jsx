@@ -12,7 +12,7 @@ const apiKey = {
 };
 
 export default function HomePage() {
-  const [results, setResults] = useState();
+  const [results, setResults] = useState([]);
   useEffect(() => {
     axios
       .get(trendMouvies, apiKey)

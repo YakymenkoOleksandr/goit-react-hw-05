@@ -2,7 +2,7 @@ import css from './MovieDetailsPage.module.css';
 import { GoArrowLeft } from 'react-icons/go';
 import { NavLink, Outlet, useParams, useNavigate, useLocation } from 'react-router-dom';
 import { useEffect, useState, useRef } from 'react';
-
+const defaultPosterImg = 'https://dl-media.viber.com/10/share/2/long/vibes/icon/image/0x0/95e0/5688fdffb84ff8bed4240bcf3ec5ac81ce591d9fa9558a3a968c630eaba195e0.jpg';
 export default function MovieDetailsPage() {
   const { movieId } = useParams();
   const [movie, setMovie] = useState(null);
@@ -43,7 +43,7 @@ export default function MovieDetailsPage() {
           <>
             <img
               className={css.poster}
-              src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
+              src={movie.poster_path ? `https://image.tmdb.org/t/p/w500/${movie.poster_path}` : defaultPosterImg}
               alt={movie.title}
             />
             <ul className={css.diferentInfo}>

@@ -1,5 +1,6 @@
 import { Link, useLocation } from 'react-router-dom';
 import css from './MovieList.module.css';
+
 export default function MovieList({ arrayOfFilms }) {
   const location = useLocation();
 
@@ -19,4 +20,3 @@ export default function MovieList({ arrayOfFilms }) {
   );
 }
 
-/*`/movies/${arrayOfFilm.id}` */
