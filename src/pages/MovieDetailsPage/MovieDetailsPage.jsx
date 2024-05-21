@@ -2,13 +2,14 @@ import css from './MovieDetailsPage.module.css';
 import { GoArrowLeft } from 'react-icons/go';
 import { NavLink, Outlet, useParams, useNavigate, useLocation } from 'react-router-dom';
 import { useEffect, useState, useRef } from 'react';
+
 const defaultPosterImg = 'https://dl-media.viber.com/10/share/2/long/vibes/icon/image/0x0/95e0/5688fdffb84ff8bed4240bcf3ec5ac81ce591d9fa9558a3a968c630eaba195e0.jpg';
+
 export default function MovieDetailsPage() {
   const { movieId } = useParams();
   const [movie, setMovie] = useState(null);
   const navigate = useNavigate();
   const location = useLocation();
-  const locationWithUL = location.state?.from || "/movies";
   const fromLocation = useRef(location.state?.from ?? "/movies");
 
   useEffect(() => {
@@ -34,7 +35,7 @@ export default function MovieDetailsPage() {
   return (
     <>
       <div className={css.areaForGoBackButton}>
-        <button onClick={() => navigate(locationWithUL)}>
+        <button onClick={() => navigate(fromLocation.current)}>
           <GoArrowLeft /> Go back
         </button>
       </div>
